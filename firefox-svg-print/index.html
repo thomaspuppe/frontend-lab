@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- Set this to the main language of your site -->
+<head>
+    <meta charset="utf-8">
+    <title>SVG Printing Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <h1>SVG Printing Test</h1>
+
+    <h2>Case 1: svg file in img tag</h2>
+    <p>
+        <img src="mozilla-foundation-logo.svg" width="200px"/>
+    </p>
+    <pre>&lt;img src="mozilla-foundation-logo.svg" /&gt;</pre>
+
+
+    <hr />
+    <h2>Case 2: svg file in object tag with img fallback</h2>
+    <p>
+        <object data="mozilla-foundation-logo.svg" type="image/svg+xml" width="200px">
+            <img src="mozilla-foundation-logo.png" alt="Logo Mozilla Foundation" />
+        </object>
+    </p>
+    <pre>&lt;object data="mozilla-foundation-logo.svg" type="image/svg+xml"&gt;
+    &lt;img src="mozilla-foundation-logo.png" alt="Logo Mozilla Foundation" /&gt;
+&lt;/object&gt;</pre>
+
+
+    <hr />
+    <h2>Case 3: svg tag with use</h2>
+    <p>
+        <svg role="img" aria-labelledby="title">
+            <use xlink:href="sprite.svg#svg-mozilla-foundation-logo"></use>
+        </svg>
+    </p>
+    <pre>&lt;svg role="img" aria-labelledby="title"&gt;
+    &lt;use xlink:href="sprite.svg#svg-mozilla-foundation-logo"&gt;&lt;/use&gt;
+&lt;/svg&gt;</pre>
+
+
+
+
+</body>
+</html>
