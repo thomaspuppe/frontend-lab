@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Brightcove Android Error</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <h1>Brightcove Android Error</h1>
+
+    <pre>VIDEOJS: ERROR: (CODE:4 MEDIA_ERR_SRC_NOT_SUPPORTED) The media could not be loaded, either because the server or network failed or because the format is not supported.</pre>
+
+    <p>Happens on Android Devices (eg Chrome Beta 54 son Samsung Galaxy S7 with Android 6.0) and in Chrome 53 Developer Mode with Device Emulation (but not in Developer mode with small screen) on Mac OS X 10.10.</p>
+
+    <iframe src='//players.brightcove.net/18140073001/H1kPIpR3_default/index.html?videoId=1953013471001&wmode=transparent&preload=none' allowfullscreen webkitallowfullscreen mozallowfullscreen style="height:230px;width:410px;"></iframe>
+
+    This test case has no autostart and has advertising disabled.
+
+    You can also find it in production with autostart and ads: http://www.zeit.de/video/index. The first video (in doubt, search for the element '.video-stage-main') has this issue. On page load, there is a placeholder image. On click it gets replaced by an iframe to http://players.brightcove.net/18140073001/65fa926a-0fe0-4031-8cbf-9db35cecf64a_default/index.html?videoId=5088202182001.
+
+
+    <h2>Some more information</h2>
+    <ul>
+    <li>Other Brightcove Customers with similar setup have working videos. E.g. http://app.handelsblatt.com/video/unternehmen/platooning-auf-deutschen-strassen-gefaehrlich-der-lkw-fahrer-wird-bald-zum-accessoire/14584626.html </li>
+    </ul>
+
+</body>
+</html>
