@@ -3,26 +3,39 @@
 <head>
     <meta charset="utf-8">
     <title>Brightcove Android Error</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body>
+<body style="width:90%; max-width: 900px;">
 
     <h1>Brightcove Android Error</h1>
 
-    <pre>VIDEOJS: ERROR: (CODE:4 MEDIA_ERR_SRC_NOT_SUPPORTED) The media could not be loaded, either because the server or network failed or because the format is not supported.</pre>
+    <i>VIDEOJS: ERROR: (CODE:4 MEDIA_ERR_SRC_NOT_SUPPORTED) The media could not be loaded, either because the server or network failed or because the format is not supported.</i>
 
-    <p>Happens on Android Devices (eg Chrome Beta 54 son Samsung Galaxy S7 with Android 6.0) and in Chrome 53 Developer Mode with Device Emulation (but not in Developer mode with small screen) on Mac OS X 10.10.</p>
+    <p>the error occurs on ...</p>
+    <ul>
+        <li>Chrome Beta 54 on Samsung Galaxy S7 with Android 6.0</li>
+        <li>Chrome 53 Developer Mode <b>with Device Emulation</b> (but not in Developer mode with small screen) on Mac OS X 10.10.</li>
+        <li>Others had issues with Android 6 on Google Nexus 5X. And are talking about "different devices, different network conditions".</li>
+    </ul>
 
-    <iframe style="width:100%" src='//players.brightcove.net/18140073001/H1kPIpR3_default/index.html?videoId=5088202182001&wmode=transparent&preload=none' allowfullscreen webkitallowfullscreen mozallowfullscreen style="height:230px;width:410px;"></iframe>
+    <iframe style="width:100%; max-width: 500px;" src='//players.brightcove.net/18140073001/H1kPIpR3_default/index.html?videoId=5088202182001&wmode=transparent&preload=none' allowfullscreen webkitallowfullscreen mozallowfullscreen style="height:230px;width:410px;"></iframe>
 
-    This test case has no autostart and has advertising disabled.
+    <p>This test case has no autostart and has advertising disabled (<a href="https://studio.brightcove.com/products/videocloud/players/players/H1kPIpR3">Brightcove Player</a>).</p>
 
-    You can also find it in production with autostart and ads: http://www.zeit.de/video/index. The first video (in doubt, search for the element '.video-stage-main') has this issue. On page load, there is a placeholder image. On click it gets replaced by an iframe to http://players.brightcove.net/18140073001/65fa926a-0fe0-4031-8cbf-9db35cecf64a_default/index.html?videoId=5088202182001.
+    <p>You can also find it in production with autostart and ads: http://www.zeit.de/video/index (<a href="https://studio.brightcove.com/products/videocloud/players/players/65fa926a-0fe0-4031-8cbf-9db35cecf64a">Brightcove Player</a>). The first video (in doubt, search for the element '.video-stage-main') has this issue. On page load, there is a placeholder image. On click it gets replaced by an <a href="http://players.brightcove.net/18140073001/65fa926a-0fe0-4031-8cbf-9db35cecf64a_default/index.html?videoId=5088202182001">iframe</a>, which then has the error.
 
+    <h2>We have tried multiple hypotheses</h2>
+    <ul>
+        <li>Autostart on/off: makes no difference.</li>
+        <li>For a while we thought the ads would trigger the error. But now we have disabled ads in the player, and still have the same error.</li>
+    </ul>
 
     <h2>Some more information</h2>
     <ul>
-    <li>Other Brightcove Customers with similar setup have working videos. E.g. http://app.handelsblatt.com/video/unternehmen/platooning-auf-deutschen-strassen-gefaehrlich-der-lkw-fahrer-wird-bald-zum-accessoire/14584626.html </li>
+    <li><b>IMPORTANT:</b> There are videos in our which do work on the same setup: <a href="old-video.html">old-video.html</a></li>
+    <li>Even when the error occurs, the network traffic shows that the m3u8 file and a working ts file get transmitted via the network. Which means, that the part "or because the format is not supported" of our error message might be the important one.</li>
+    <li>Other Brightcove Customers with similar setup have <a href="http://app.handelsblatt.com/video/unternehmen/platooning-auf-deutschen-strassen-gefaehrlich-der-lkw-fahrer-wird-bald-zum-accessoire/14584626.html">working videos</a>.</li>
+    <li></li>
     </ul>
 
 </body>
