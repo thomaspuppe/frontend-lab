@@ -1,0 +1,26 @@
+body {
+	color: #444;
+	font-size: 18px;
+	line-height: 1.6;
+	margin:	40px auto;
+	max-width: 650px;
+	padding: 0 10px;
+}
+
+body.offline {
+	background-color: #F5F5F5;
+}
+
+h1,h2,h3 {
+	line-height: 1.2;
+}
+
+header {
+	border-bottom: 1px #444 solid;
+	padding-bottom: 2vh;
+    text-align: center;
+}
+
+.logo {
+	height: 6vh;
+}
