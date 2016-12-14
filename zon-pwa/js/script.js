@@ -18,7 +18,8 @@ window.addEventListener('online', function(e) {
 window.addEventListener('offline', function(e) {
     console.log("You are offline");
 
-    var $body = document.querySelector('body').className = 'offline';
+    var $body = document.querySelector('body')
+    $body.className = 'offline';
 
 	var xhr = new XMLHttpRequest();
 	xhr.onload = function() {
