@@ -116,6 +116,8 @@ Alles im Safari ansehen ... gibts Probleme? Lädt etwas langsamer?
 Demo: https://incredibleweb.github.io/pwa-tutorial/
 Code: https://github.com/IncredibleWeb/pwa-tutorial
 
+https://developer.mozilla.org/de/docs/Web/API/Service_Worker_API/Using_Service_Workers
+
 Fragen: 
 - wo und wie lange lebt der Event?
 - Kann man nur das Offline-Zeugs nutzen, ohne sich in alle Requests reinzuhängen? Also nur in den Home-Request sowie alle anderen?
