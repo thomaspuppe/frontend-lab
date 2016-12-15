@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Progressive Web Apps @ ZEIT Online</title>
+		<meta name="author" content="Thomas Puppe">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>PWA@ZON</h1>
+					<h3>Über den Einsatz von<br> Progressive Web Apps <br>auf ZEIT Online</h3>
+				</section>
+
+				<section>
+					<h2>Progressive Web Apps</h2>
+					<ul>
+						<li><strike>Progressive</strike></li>
+						<li><strike>Discoverable</strike></li>
+						<li><strike>Linkable</strike></li>
+						<li><strike>Responsive</strike></li>
+						<li><strike>Fresh</strike></li>
+						<li>Safe</li>
+						<li>App-like</li>
+						<li>Re-engageable</li>
+						<li><strong>Installable</strong></li>
+						<li><strong>Connectivity-independent</strong></li>
+					</ul>
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Installable</h2>
+						<pre><code class="html" data-trim contenteditable>
+						<link rel="manifest" href="manifest.json">
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>manifest.json</h2>
+						<pre><code class="json" data-trim contenteditable>
+{
+  "short_name": "ZON PWA",
+  "name": "ZEIT Online PWA Prototyp",
+  "icons": [
+    {
+      "src": "./icons/launcher-icon-8x.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#BD29B5",
+  "background_color": "#BD29B5"
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>script.js</h2>
+						<pre><code class="js" data-trim contenteditable>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('serviceworker.js')
+    .then(function(reg) {
+      console.log('Successfully registered the sw', reg);
+    }).catch(function(err) {
+      console.warn('Error whilst registering the sw', err);
+    });
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<img src="img/install_h600.png" />
+					</section>
+
+					<section>
+						<img src="img/installed_h800.png" />
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Connectivity-independent</h2>
+						<p></p>
+					</section>
+
+					<section>
+						<h2>1. Dateien bei Installation cachen</h2>
+						<pre><code class="js" data-trim contenteditable>
+self.addEventListener('install', function(e) {
+    e.waitUntil(
+        caches.open('v3.23').then(function(cache) {
+            console.log('ServiceWorker caches');
+            return cache.addAll([
+                './css/style.css',
+                './js/script.js',
+                './offline.html'
+            ]).then(function() {
+                self.skipWaiting();
+            });}));});
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>2. Dateien online/offline abrufen</h2>
+						<pre><code class="js" data-trim contenteditable>
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
+            if (response) {
+                return response;
+            }
+            return fetch(event.request);
+        }));});
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>3. Offline-Status erkennen</h2>
+						<pre><code class="js" data-trim contenteditable>
+if (navigator.onLine) {}
+
+window.addEventListener('online', function(e) {});
+
+window.addEventListener('offline', function(e) {});
+						</code></pre>
+					</section>
+				</section>
+
+				<section data-background="#f5f5f5">
+					<h2>Demo Time</h2>
+					<a href="https://thomaspuppe.github.io/frontend-lab/zon-pwa/"><img src="img/trex1.png" style="border:none" /></a>
+				</section>
+
+				<section>
+					<section>
+						<h2>Browser-Support</h2>
+						<p>Mostly supported in Chrome, Firefox, Opera and Samsung’s browser. In development in Microsoft Edge. No plans for Safari as of yet.</p>
+					</section>
+					<section>
+						<pre><code class="js" data-trim contenteditable>
+							self.addEventListener('fetch')
+						</code></pre>
+					</section>
+				</section>
+
+				<section data-background="#f5f5f5">
+					<h2>Die Zukunft</h2>
+					<img src="img/trex2.png" style="border:none;box-shadow:none;" />
+				</section>
+
+				<section>
+					<h2>Quellen</h2>
+					<ul>
+						<li><a href="https://www.smashingmagazine.com/2016/08/a-beginners-guide-to-progressive-web-apps/">A Beginner’s Guide To Progressive Web Apps</a></li>
+						<li><a href="https://www.smashingmagazine.com/2016/09/the-building-blocks-of-progressive-web-apps/">The Building Blocks Of Progressive Web Apps</a></li>
+						<li><a href="https://www.smashingmagazine.com/2016/12/progressive-web-amps/">Progressive Web AMPs</a></li>
+						<li><a href="https://ada.is/blog/2016/06/01/yet-another-progressive-webapp-post/">About the state and future of Progressive Web App</a></li>
+						<li><a href="https://developers.google.com/web/fundamentals/engage-and-retain/push-notifications/">Web Push Notifications</a></li>
+						<li><a href="https://developers.google.com/web/updates/2015/03/increasing-engagement-with-app-install-banners-in-chrome-for-android">Install-Banner</a></li>
+						<li><a href="https://www.smashingmagazine.com/wp-content//uploads/2016/08/the-guardian-opt.jpg">Guardian Offline</a></li>
+
+						<li><a href="https://incredibleweb.github.io/pwa-tutorial/">Smashing Demo</a> / <a href="https://github.com/IncredibleWeb/pwa-tutorial">Code</a></li>						
+
+						<li><a href="https://thomaspuppe.github.io/frontend-lab/zon-pwa/">meine Demo</a> / <a href="https://github.com/thomaspuppe/frontend-lab/tree/gh-pages/zon-pwa">Code</a></li>
+
+						<li><a href="https://github.com/GoogleChrome/sw-helpers/tree/master/packages/sw-offline-google-analytics">Helper Libs</a></li>
+
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
