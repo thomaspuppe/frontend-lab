@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Font Tool</title>
+	<meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1 class="font font--a">Mein Font Tool</h1>
+
+<h1 id="f2" class="font font--b" style="
+    /* display: none; */
+    font-size: 6.8rem;
+    top: -7px;
+    letter-spacing: -14px;
+    font-weight: 900;
+">Mein Font Tool</h1>
+	
+
+<form>
+	<input id="s1" type="range" min="-50" max="50" step="1" style="width:500px" onchange="document.getElementById('v1').value = document.getElementById('f2').style.letterSpacing = this.value + 'px';">
+	<input id="v1" type="text" size="2">
+</form>
+
+
+</body>
+</html>
