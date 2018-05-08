@@ -1,0 +1,4 @@
+localhost:8000
+markdown / {
+	template ../template.html
+}

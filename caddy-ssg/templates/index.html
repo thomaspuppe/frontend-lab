@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{.Doc.title}}</title>
+    </head>
+    <body>
+        Welcome to {{.Doc.sitename}}!
+        <br><br>
+
+        {{.Doc.body}}
+
+        <main style="border: 1px black solid; padding: 1rem;">
+            <ul>
+            {{range .Files}}
+
+                    <li>
+                        <a href="{{$.StripExt .Name}}">{{$.StripExt .Name}}</a>
+                            {{if not .IsDir }}
+                                {{.Summarize 15}}
+                            {{end}}
+                    </li>
+
+            {{end}}
+        </ul>
+        </main>
+
+
+        {{.Now "Monday, 2 Jan 2006"}}
+    </body>
+</html>

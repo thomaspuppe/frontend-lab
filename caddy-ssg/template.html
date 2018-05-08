@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{.Doc.title}}</title>
+        <link rel="stylesheet" media="screen" href="/styles.css">
+    </head>
+    <body>
+        <head>
+            <h1>{{.Doc.title}}</h1>
+        </head>
+        <article>
+            {{.Doc.body}}
+        </article>
+
+            <ul>
+            {{.Files "sub/folder"}}
+                <li>
+                    <a href="{{$.StripExt .Name}}">{{$.StripExt .Name}}</a>
+                </li>
+            {{end}}
+        </ul>
+
+
+        <footer>
+            <a href="{{.Doc.author_url}}">{{.Doc.author}}</a> on {{.Doc.date}}
+        </footer>
+        <script async defer src="/script.js"></script>
+    </body>
+</html>

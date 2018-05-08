@@ -1,0 +1,6 @@
+body {
+	border: 2px black solid;
+	margin: 1rem auto;
+	padding: 2rem auto;
+	max-width: 600px;
+}
