@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
+	<!-- TODO: this should not be indexed in any search engine ;-) -->
+
 	<title>BPhil FAQ</title>
 	<style>
 	.clearfix:after,.clearfix:before {
@@ -32,6 +35,26 @@
 		.main-content.content-page .content-row .content.w70 {
 	    	width: 66%;
 		}
+	}
+
+	/* *** Actual changes that go into the repo *** */
+	h3 button {  
+		all: inherit;    
+	}
+	/* TODO: create focus style, which we removed by `all:inherit`. */
+
+	/* *** Demo Changes that stay in the lab *** */
+	h3 button[aria-expanded]:focus,
+	h3 button[aria-expanded]:hover {
+		outline: dashed blue;
+	}
+	h3 button[aria-expanded="false"]:before {
+		content: "+";
+		padding-right: 1ch;
+	}
+	h3 button[aria-expanded="true"]:before {
+		content: "-";
+		padding-right: 1ch;
 	}
 	</style>
 </head>
