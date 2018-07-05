@@ -64,14 +64,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	var addContentRow = function (contentLeft, contentRight) {
 		return '<section class="content-row border-top clearfix">' +
-		'<article class="content left w30 clearfix">' + contentLeft + '</article>' +
+		'<article class="content left w30 clearfix"><h2>' + contentLeft + '</h2></article>' +
 		'<article class="content w70 clearfix">' + contentRight + '</article></section>';
 	};
 
-	var addTogglerMarkup = function (headline, content) {
+	/*var addTogglerMarkup = function (headline, content) {
 		return '<section class="toggler closed small clearfix">' +
 		'<header><h3 class="toggler-headline light font-icon open-small-toggler">' + headline + '</h3></header>' +
 		'<article class="toggler-content">' + content + '</article></section>';
+	};*/
+	
+	var addTogglerMarkup = function (headline, content) {
+		return '<h3><button aria-expanded="false">' + headline + '</button></h3>' + 
+		'<div hidden>' + content + '</div>';
 	};
 
 	var addHelpContent = function (sections) {
@@ -85,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			section = sections[key];
 
 			if (section.name && section.articles.length) {
-				sectionTitle = '<h2>' + section.name + '</h2>';
+				sectionTitle = section.name;
 				sectionContent = '';
 
 				for (var i = 0; i < section.articles.length; i++) {
