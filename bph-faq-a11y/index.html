@@ -85,6 +85,26 @@ document.addEventListener('DOMContentLoaded', function() {
 		dataType: 'json'
 	});
 
+	var makeFaqToggleable = function() {
+		var headings = document.querySelectorAll('h3'),
+			i;
+
+		for (i = 0; i < headings.length; i++) {
+			var heading = headings[i];
+			var button = heading.querySelector('button');
+
+			button.onclick = function(evt) {
+				var button = evt.target;
+				var heading = button.parentNode;
+				var content = heading.nextElementSibling;			
+
+				var expanded = button.getAttribute('aria-expanded') === 'true' || false;
+				button.setAttribute('aria-expanded', !expanded);
+				content.hidden = expanded;
+			}
+		}
+	};
+	
 	var addContentRow = function (contentLeft, contentRight) {
 		return '<section class="content-row border-top clearfix">' +
 		'<article class="content left w30 clearfix"><h2>' + contentLeft + '</h2></article>' +
@@ -129,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		$('.main-content').append(helpContentMarkUp);
 
 		//$('.toggler').createToggler();
+		makeFaqToggleable();
 	};
 
 	$.when(sectionsXHR, articlesXHR).done(function(sectionData, articleData) {
